@@ -17,7 +17,8 @@ My take on the Advent of Code challenge of 2018. I generally wouldn't consider m
 
 ## Status
 
-| Day | Part 1 | Part 2 |
-| :-: | :----: | :-----: |
-| 1   | Complete| Complete |
-| 2   | Complete | In-Progress |
+| Day | Part 1      | Part 2   |
+| :-: | :---------: | :------: |
+| 1   | Complete    | Complete |
+| 2   | Complete    | Complete |
+| 3   | In-Progress |          |
