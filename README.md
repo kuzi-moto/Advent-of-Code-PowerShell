@@ -23,3 +23,12 @@ My take on the Advent of Code challenge of 2018. I generally wouldn't consider m
 | 2   | Complete    | Complete |
 | 3   | Complete    | Complete |
 | 4   | In-Progress | -        |
+
+## Others
+
+* https://github.com/charlieschmidt/AdventOfCode2018
+* https://github.com/SotoDucani/AdventOfCode2018
+* https://github.com/ThePSAdmin/AdventOfCode/tree/master/2018/PowerShell
+* https://github.com/kib/aoc2018
+* https://github.com/rdameron/adventofcode
+* https://github.com/VortexUK/AdventOfCode/tree/master/2018
