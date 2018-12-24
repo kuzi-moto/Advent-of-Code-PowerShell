@@ -1,5 +1,8 @@
-$InputFile = Get-Content $Args[0]
-foreach ($i in $InputFile) {
+param (
+    $InputFile = ".\Input.txt"
+  )
+$Data = Get-Content $InputFile
+foreach ($i in $Data) {
   $Count = @{}
   foreach ($letter in $i.GetEnumerator()) {
     $Count.$letter += 1

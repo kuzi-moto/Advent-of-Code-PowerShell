@@ -1,0 +1,3 @@
+Param (
+  $InputFile = ".\TestInput.txt"
+)
