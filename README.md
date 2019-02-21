@@ -24,7 +24,7 @@ My take on the Advent of Code challenge of 2018. I generally wouldn't consider m
 | 3   | Complete    | Complete |
 | 4   | Complete    | Complete |
 | 5   | Complete    | Complete |
-| 6   | In-Progress |          |
+| 6   | Complete    | In-Progress |
 
 ## Others
 
