@@ -1,6 +1,6 @@
-# Advent-of-Code-2018-powershell
+# Advent-of-Code-PowerShell
 
-My take on the Advent of Code challenge of 2018. I generally wouldn't consider myself a "programmer" but have used a lot of powershell and thought it would be fun to try and participate and see how far I can push the limits of my knowledge.
+[Advent of Code](https://adventofcode.com/) is series of programming challenges where a new problem is revealed every day for the month of December, until Christmas. I'll be attempting these challenges using PowerShell to improve my skill with it. Though you are able to use any language you want.
 
 ## Rules & Organization
 
@@ -16,6 +16,14 @@ My take on the Advent of Code challenge of 2018. I generally wouldn't consider m
 * Okay to skip a day if it's not fun or taking too long.
 
 ## Status
+
+### 2019
+
+| Day | Part 1      | Part 2   |
+| :-: | :---------: | :------: |
+| 1   | In-Progress |          | 
+
+### 2018
 
 | Day | Part 1      | Part 2   |
 | :-: | :---------: | :------: |
