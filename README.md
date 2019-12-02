@@ -22,7 +22,7 @@
 | Day | Part 1      | Part 2      |
 | :-: | :---------: | :------:    |
 | 1   | Complete    | Complete    |
-| 2   | In-Progress |             |
+| 2   | Complete    | In-Progress |
 
 ### 2018
 

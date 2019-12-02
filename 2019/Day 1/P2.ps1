@@ -1,5 +1,5 @@
 Param (
-  $InputFile = ".\TestInput.txt"
+  $InputFile = (Join-Path $PSScriptRoot "Input.txt")
 )
 
 $Data = Get-Content $InputFile
