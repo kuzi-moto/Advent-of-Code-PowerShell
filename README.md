@@ -12,16 +12,16 @@
 * Try to do everything on my own, no peeking at other solutions. Googling for general powershell usage allowed.
 * Code will be in a basic function block so I can use Measure-Command -Expression {SolutionCommand} to get the execution times easily
 * All of the scripts can be run without any arguments to grab the default input, or supply a path to the desired file.
-* Test my knowledge of Powershell and hopfully learn something new.
+* Test my knowledge of Powershell and hopefully learn something new.
 * Okay to skip a day if it's not fun or taking too long.
 
 ## Status
 
 ### 2019
 
-| Day | Part 1      | Part 2   |
-| :-: | :---------: | :------: |
-| 1   | In-Progress |          | 
+| Day | Part 1      | Part 2      |
+| :-: | :---------: | :------:    |
+| 1   | Complete    | In-Progress |
 
 ### 2018
 

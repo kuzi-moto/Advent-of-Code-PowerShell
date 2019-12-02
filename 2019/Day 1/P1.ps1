@@ -3,7 +3,10 @@ Param (
 )
 
 $Data = Get-Content $InputFile
+$Sum = 0
 
-# Solution goes here
+$Data | ForEach-Object {
+  $Sum += [System.Math]::Truncate(($_ / 3)) - 2
+}
 
-Write-Host "Answer: "
+Write-Host "Sum of the fuel requirements: $Sum"
