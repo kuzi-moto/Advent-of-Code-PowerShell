@@ -21,7 +21,8 @@
 
 | Day | Part 1      | Part 2      |
 | :-: | :---------: | :------:    |
-| 1   | Complete    | In-Progress |
+| 1   | Complete    | Complete    |
+| 2   | In-Progress |             |
 
 ### 2018
 
