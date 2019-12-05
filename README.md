@@ -23,7 +23,7 @@
 | :-: | :---------: | :------:    |
 | 1   | Complete    | Complete    |
 | 2   | Complete    | Complete    |
-| 3   | Waiting...  |             |
+| 3   | Complete    | In-Progress |
 
 ### 2018
 
