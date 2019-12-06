@@ -6,3 +6,4 @@ I tried to use some .net classes, like System.Drawing.Drawing2D to do the actual
 
 ## Part 2
 
+This part took much longer to solve, and also takes almost 10 minutes to run. There are definitely better ways to do this, might come back to it later.

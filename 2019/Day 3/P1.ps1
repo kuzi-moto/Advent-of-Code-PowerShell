@@ -34,7 +34,6 @@ $Data | ForEach-Object {
 $Intersections = @()
 
 $m = [System.Math]
-$test = 1
 $Wires.'1' | ForEach-Object {
   $x1 = $_.Start.X
   $y1 = $_.Start.Y
@@ -42,7 +41,6 @@ $Wires.'1' | ForEach-Object {
   $y2 = $_.End.Y
   $Horizontal = $_.Horizontal
   $Wires.'2' | ForEach-Object {
-    $test++
     if ($Horizontal -ne $_.Horizontal) {
       $x3 = $_.Start.X
       $y3 = $_.Start.Y

@@ -2,9 +2,11 @@ param (
   [int]$Year = (Get-Date).year
 )
 
-$YearDir = Join-Path $PSScriptRoot $Year
+$root = $PSScriptRoot
+$YearDir = Join-Path $root $Year
+$TemplatesDir = Join-Path $root "templates"
 
-if (-not (Test-Path $Year)) {
+if (-not (Test-Path $YearDir)) {
   Write-Host "Creating a new directory for year $Year"
   New-Item -ItemType Directory -Path $YearDir | Out-Null
 }
@@ -22,7 +24,7 @@ else {
     New-Item -ItemType Directory -Path $DayDir | Out-Null
 }
 
-Get-ChildItem -Path "templates" | Copy-Item -Destination $DayDir
+Get-ChildItem -Path $TemplatesDir | Copy-Item -Destination $DayDir
 New-Item -Path (Join-Path $DayDir "TestInput.txt") | Out-Null
 Write-Host ""
 Write-Host "Don't forget to save the input: https://adventofcode.com/$Year/day/$Day/input" -ForegroundColor Yellow
