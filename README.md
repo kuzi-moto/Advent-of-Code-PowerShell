@@ -24,7 +24,7 @@
 | 1   | Complete    | Complete    |
 | 2   | Complete    | Complete    |
 | 3   | Complete    | Complete    |
-| 4   | In-Progress |             |
+| 4   | Complete    | In-Progress |
 
 ### 2018
 
