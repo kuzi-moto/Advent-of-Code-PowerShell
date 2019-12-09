@@ -18,10 +18,6 @@ $End -match '(\d)(\d)(\d)(\d)(\d)(\d)' | Out-Null
 $EndArr = [int]$Matches[1], [int]$Matches[2], [int]$Matches[3], [int]$Matches[4], [int]$Matches[5], [int]$Matches[6]
 
 $MeetsCriteria = 0
-$sample = @()
-
-# 172851
-# 012345
 
 $Done = $false
 do {
@@ -53,7 +49,7 @@ do {
 
   if ([int]($StartArr -Join "") -ge [int]($EndArr -Join "")) { $Done = $true; }
   else {
-    if ([int]($StartArr -join "") -match '(\d)\1') {
+    if (($StartArr -join "") -match '(\d)\1') {
       $MeetsCriteria++
     }
 
@@ -65,11 +61,6 @@ do {
       }
     }
   }
-
-
-
-  #$Done = $true
-  # ($StartArr -Join "") -eq ($EndArr -Join "")
 } until ($Done)
 
 Write-Host "Valid password count: $MeetsCriteria"

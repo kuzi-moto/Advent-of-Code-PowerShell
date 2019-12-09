@@ -53,16 +53,22 @@ do {
 
   if ([int]($StartArr -Join "") -ge [int]($EndArr -Join "")) { $Done = $true; }
   else {
-    if ([int]($StartArr -join "") -match '(\d)\1') {
-      $MeetsCriteria++
+    $Result = Select-String -InputObject ($StartArr -join "") -Pattern '(\d)\1+' -AllMatches
+
+    for ($ii = 0; $ii -lt $Result.Matches.Length; $ii++) {
+      if ($Result.Matches[$ii].Length -eq 2) {
+        $MeetsCriteria++
+        break
+      }
     }
 
-    $StartArr[5]++
-    for ($ii = 5; $ii -gt 0; $ii--) {
-      if ($StartArr[$ii] -gt 9) {
-        $StartArr[$ii - 1]++
-        $StartArr[$ii] = 0
-      }
+  }
+
+  $StartArr[5]++
+  for ($ii = 5; $ii -gt 0; $ii--) {
+    if ($StartArr[$ii] -gt 9) {
+      $StartArr[$ii - 1]++
+      $StartArr[$ii] = 0
     }
   }
 
