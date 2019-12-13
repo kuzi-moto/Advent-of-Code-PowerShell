@@ -1,6 +1,6 @@
 Param (
-  $InputFile = (Join-Path $PSScriptRoot "TestInput.txt"),
-  $InputInt = 8
+  $InputFile = (Join-Path $PSScriptRoot "Input.txt"),
+  $InputInt = 5
 )
 
 $Data = Get-Content $InputFile
@@ -22,12 +22,12 @@ $OpCodes = @{
 
 function Get-Value {
   param (
-    [int]$Position,
+    [int]$Pointer,
     [int]$ParameterMode
   )
   switch ($ParameterMode) {
-    0 { return $Program[$Program[$Position]]; break }
-    1 { return $Program[$Position]; break }
+    0 { return $Program[$Program[$Pointer]]; break }
+    1 { return $Program[$Pointer]; break }
     Default {
       Write-Host "Invalid Parameter Mode"
       return $null
@@ -55,11 +55,10 @@ function Get-Value {
 # 0: Position Mode - Parameters are interpreted as a position
 # 1: Immediate Mode - Parameters are interpreted as values
 
-$Position = 0
+$Pointer = 0
 $Done = $false
 while (!$Done) {
-  $Position
-  $Instruction = $Program[$Position]
+  $Instruction = $Program[$Pointer]
   $ParameterModes = @()
 
   if ($Instruction -gt 99) {
@@ -77,69 +76,75 @@ while (!$Done) {
 
   switch ($Opcode) {
     1 {
-      $Value1 = Get-Value ($Position + 1) $ParameterModes[0]
-      $Value2 = Get-Value ($Position + 2) $ParameterModes[1]
+      $Value1 = Get-Value ($Pointer + 1) $ParameterModes[0]
+      $Value2 = Get-Value ($Pointer + 2) $ParameterModes[1]
 
-      $Program[$Program[$Position + 3]] = $Value1 + $Value2
+      $Program[$Program[$Pointer + 3]] = $Value1 + $Value2
       break
     }
     2 {
-      $Value1 = Get-Value ($Position + 1) $ParameterModes[0]
-      $Value2 = Get-Value ($Position + 2) $ParameterModes[1]
+      $Value1 = Get-Value ($Pointer + 1) $ParameterModes[0]
+      $Value2 = Get-Value ($Pointer + 2) $ParameterModes[1]
 
-      $Program[$Program[$Position + 3]] = $Value1 * $Value2
+      $Program[$Program[$Pointer + 3]] = $Value1 * $Value2
       break
     }
-    3 { $Program[$Program[$Position + 1]] = $InputInt; break }
+    3 { $Program[$Program[$Pointer + 1]] = $InputInt; break }
     4 {
-      $Output = Get-Value ($Position + 1) $ParameterModes[0]
+      $Output = Get-Value ($Pointer + 1) $ParameterModes[0]
       Write-Host "Output: $Output"
       break
     }
     5 {
-      $Value1 = Get-Value ($Position + 1) $ParameterModes[0]
-      $Value2 = Get-Value ($Position + 2) $ParameterModes[1]
+      $Value1 = Get-Value ($Pointer + 1) $ParameterModes[0]
 
-      if ($Value1 -ne 0) { $Position = $Value2 }
+      if ($Value1 -ne 0) {
+        $NewPointer = Get-Value ($Pointer + 2) $ParameterModes[1]
+      }
       break
     }
     6 {
-      $Value1 = Get-Value ($Position + 1) $ParameterModes[0]
-      $Value2 = Get-Value ($Position + 2) $ParameterModes[1]
+      $Value1 = Get-Value ($Pointer + 1) $ParameterModes[0]
 
-      if ($Value1 -eq 0) { $Position = $Value2 }
+      if ($Value1 -eq 0) {
+        $NewPointer = Get-Value ($Pointer + 2) $ParameterModes[1]
+      }
       break
     }
     7 {
-      $Value1 = Get-Value ($Position + 1) $ParameterModes[0]
-      $Value2 = Get-Value ($Position + 2) $ParameterModes[1]
+      $Value1 = Get-Value ($Pointer + 1) $ParameterModes[0]
+      $Value2 = Get-Value ($Pointer + 2) $ParameterModes[1]
 
       if ($Value1 -lt $Value2) {
-        $Program[$Program[$Position + 3]] = 1
+        $Program[$Program[$Pointer + 3]] = 1
       }
       else {
-        $Program[$Program[$Position + 3]] = 0
+        $Program[$Program[$Pointer + 3]] = 0
       }
       break
     }
     8 {
-      $Value1 = Get-Value ($Position + 1) $ParameterModes[0]
-      $Value2 = Get-Value ($Position + 2) $ParameterModes[1]
+      $Value1 = Get-Value ($Pointer + 1) $ParameterModes[0]
+      $Value2 = Get-Value ($Pointer + 2) $ParameterModes[1]
 
       if ($Value1 -eq $Value2) {
-        $Program[$Program[$Position + 3]] = 1
+        $Program[$Program[$Pointer + 3]] = 1
       }
       else {
-        $Program[$Program[$Position + 3]] = 0
+        $Program[$Program[$Pointer + 3]] = 0
       }
       break
     }
-    99 { Write-Host "Terminating" }
+    99 { Write-Host "Terminating"; $Done = $true; break }
     Default { $Done = $true }
   }
 
-  if ($Opcode -ne 5 -and $Opcode -ne 6) {
-    $Position += $OpCodes.$Opcode + 1
+  if ($NewPointer) {
+    $Pointer = $NewPointer
+    $NewPointer = $null
+  }
+  else {
+    $Pointer += $OpCodes.$Opcode + 1
   }
 }
 
