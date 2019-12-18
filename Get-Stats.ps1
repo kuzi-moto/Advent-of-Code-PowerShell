@@ -1,7 +1,7 @@
 param (
-  [int]$Year = (Get-Date).year,
   [int]$Day,
-  [int]$Part
+  [int]$Part,
+  [int]$Year = (Get-Date).year
 )
 
 $root = Join-Path $PSScriptRoot "$Year/Day $Day"
