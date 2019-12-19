@@ -4,11 +4,10 @@ Param (
 
 $Data = Get-Content $InputFile
 
-
 $Objects = @()
-# https://stackoverflow.com/a/43083644
-#$Map = @($null) * ($Data.Length + 1)
 $Map = @{ }
+# https://stackoverflow.com/a/43083644
+$Orbits = @($null) * ($Data.Length + 1)
 
 # Get a list of all orbits, and create a map using the index of the objects position in array
 $Data | ForEach-Object {
@@ -19,45 +18,36 @@ $Data | ForEach-Object {
   if ($Objects.IndexOf($two) -lt 0) { $Objects += $two }
   $IndexOne = $Objects.IndexOf($one)
   $IndexTwo = $Objects.IndexOf($two)
-  #$Map[$IndexTwo] = $IndexOne
   if (!$Map.$IndexOne) { $Map.$IndexOne = @($IndexTwo) }
   else { $Map.$IndexOne += $IndexTwo }
+  $Orbits[$IndexTwo] = $IndexOne
 }
 
-$Queue = @()
-$AllSatellites = @()
-$Map.Values | ForEach-Object { $AllSatellites += $_ }
+$StartIndex = $Objects.IndexOf("YOU")
+$EndIndex = $Objects.IndexOf("SAN")
+$StartPos = $Orbits[$StartIndex]
+$EndPos = $Orbits[$EndIndex]
 
-# Get the index for the object that doesn't orbit any other object
-for ($i = 0; $i -lt $Objects.Count; $i++) {
-  if ($AllSatellites -notcontains $i) { $Queue += $i }
-}
-
-$Counts = @{ }
-$Count = 1
+$Count = 0
+$Traversed = @()
+$Queue = @($StartPos)
 
 do {
   $NewQueue = @()
 
   for ($i = 0; $i -lt $Queue.Count; $i++) {
+    $Traversed += $Queue[$i]
+    # Get satellites of object
     $Map.($Queue[$i]) | Where-Object { $null -ne $_ } | ForEach-Object {
-      $Counts.$_ = $Count
       $NewQueue += $_
     }
+
+    # Get planet that the object is orbiting
+    $NewQueue += $Orbits[$Queue[$i]] | Where-Object { $null -ne $_ }
   }
 
-  <#   $Map.Clone().GetEnumerator() | Where-Object { $Queue -contains $_.Value } | ForEach-Object {
-    $Satellite = $_.Name
-    $Counts.$Satellite = $Count
-    $NewQueue += $Satellite
-    $Map.Remove($_.Name)
-  } #>
-
-  $Queue = $NewQueue.Clone()
+  $Queue = $NewQueue.Clone() | Where-Object { $Traversed -notcontains $_ }
   $Count++
-} until ($Queue.Count -eq 0)
+} until ($Queue -contains $EndPos)
 
-$Ans = 0
-$Counts.Values | ForEach-Object { $Ans += $_ }
-
-Write-Host "Total # of orbits: $Ans"
+Write-Host "Shortest # of orbital transfers: $Count"
