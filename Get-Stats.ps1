@@ -1,12 +1,35 @@
 param (
   [int]$Day,
   [int]$Part,
-  [int]$Year = (Get-Date).year
+  [int]$Year = (Get-Date).Year
 )
 
-$root = Join-Path $PSScriptRoot "$Year/Day $Day"
+$YearPath = Join-Path $PSScriptRoot $Year
 
-$Script = Join-Path $root "P$Part.ps1"
-$Stats = Join-Path $root ("P" + $Part + "_stats.txt")
+if (-not (Test-Path $YearPath)) {
+  Write-Warning "The directory for $Year ($YearPath) doesn't exist."
+  return
+}
 
-Measure-Command -Expression { & $Script } | Out-String | ForEach-Object {$_.Trim() | Out-File $Stats}
+if (!$PSBoundParameters.ContainsKey('Day')) {
+  (Get-ChildItem -Path $YearPath | Select-Object Name | Sort-Object)[-1] -match '\d+'
+  $Day = $Matches[0].ToString()
+}
+
+$DayPath = Join-Path $YearPath "Day $Day"
+
+if (!$PSBoundParameters.ContainsKey('Part')) {
+  $ScriptPath = Join-Path $DayPath "P2.ps1"
+  # Assume P1 exists if P2 doesn't
+  if (!Test-Path $ScriptPath) { $ScriptPath = Join-Path $DayPath "P1.ps1" }
+}
+else { $ScriptPath = Join-Path $DayPath "P$Part.ps1" }
+
+if (-not (Test-Path $ScriptPath)) {
+  Write-Warning "The script at `"$ScriptPath`" doesn't exist."
+  return
+}
+
+$StatsPath = Join-Path $DayPath ("P" + $Part + "_stats.txt")
+
+Measure-Command -Expression { & $ScriptPath } | Out-String | ForEach-Object { $_.Trim() | Out-File $StatsPath }
