@@ -19,11 +19,12 @@ if (!$PSBoundParameters.ContainsKey('Day')) {
 $DayPath = Join-Path $YearPath "Day $Day"
 
 if (!$PSBoundParameters.ContainsKey('Part')) {
-  $ScriptPath = Join-Path $DayPath "P2.ps1"
+  $Part = 2
   # Assume P1 exists if P2 doesn't
-  if (!Test-Path $ScriptPath) { $ScriptPath = Join-Path $DayPath "P1.ps1" }
+  if (-not (Test-Path (Join-Path $DayPath "P$Part.ps1"))) { $Part = 1 }
 }
-else { $ScriptPath = Join-Path $DayPath "P$Part.ps1" }
+
+$ScriptPath = Join-Path $DayPath "P$Part.ps1"
 
 if (-not (Test-Path $ScriptPath)) {
   Write-Warning "The script at `"$ScriptPath`" doesn't exist."
