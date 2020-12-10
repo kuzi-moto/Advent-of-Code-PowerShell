@@ -29,9 +29,10 @@ This script runs the solution script, and outputs a stats file to measure perfor
 
 ### 2020
 
-|  Day  |  Part 1  |   Part 2    |
-| :---: | :------: | :---------: |
-|   1   | Complete | In-Progress |
+|  Day  |  Part 1  |  Part 2  |
+| :---: | :------: | :------: |
+|   1   | Complete | Complete |
+|   2   |          |          |
 
 ### 2019
 

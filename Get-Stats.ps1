@@ -12,7 +12,7 @@ if (-not (Test-Path $YearPath)) {
 }
 
 if (!$PSBoundParameters.ContainsKey('Day')) {
-  (Get-ChildItem -Path $YearPath | Select-Object Name | Sort-Object)[-1] -match '\d+'
+  $null = (Get-ChildItem -Path $YearPath | Select-Object Name | Sort-Object)[-1] -match '\d+'
   $Day = $Matches[0].ToString()
 }
 
