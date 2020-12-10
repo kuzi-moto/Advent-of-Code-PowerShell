@@ -1,6 +1,4 @@
-# Notes
-
-Keywords: Manhattan distance
+#Notes
 
 ## Part 1
 
