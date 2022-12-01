@@ -31,7 +31,7 @@ This script runs the solution script, and outputs a stats file to measure perfor
 
 |  Day  |  Part 1  |  Part 2  |
 | :---: | :------: | :------: |
-|   1   | Complete |          |
+|   1   | Complete | Complete |
 
 ### 2020
 
