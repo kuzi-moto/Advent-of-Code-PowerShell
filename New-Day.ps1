@@ -14,7 +14,7 @@ if (-not (Test-Path $YearDir)) {
 $Days = Get-ChildItem $YearDir
 
 if ($Days.count -eq 25) {
-    Write-Host "Already have all 25 days"
+    Write-Host "Already have all 25 days for $Year"
     return
 }
 else {
