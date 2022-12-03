@@ -10,7 +10,8 @@
   * The input file for the day.
   * Runtime stats for both parts.
 * Try to do everything on my own, no peeking at other solutions. Googling for general powershell usage allowed.
-* Code will be in a basic function block so I can use the `Get-Stats.ps1` script to get the execution times easily.
+* Use the `Get-Stats.ps1` script to get the execution time.
+* Try to get the execution time within 1-2 seconds.
 * All of the scripts can be run without any arguments to grab the default input, or supply a path to the desired file.
 * Test my knowledge of Powershell and hopefully learn something new.
 * Okay to skip a day if it's not fun or taking too long.
@@ -32,6 +33,7 @@ This script runs the solution script, and outputs a stats file to measure perfor
 |  Day  |  Part 1  |  Part 2  |
 | :---: | :------: | :------: |
 |   1   | Complete | Complete |
+|   2   | Complete | Complete |
 
 ### 2021
 
