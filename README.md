@@ -39,7 +39,7 @@ This script runs the solution script, and outputs a stats file to measure perfor
 |   5   | Complete | Complete |
 |   6   | Complete | Complete |
 |   7   | Complete | Complete |
-|   8   | Complete |          |
+|   8   | Complete | Complete |
 
 ### 2021
 
