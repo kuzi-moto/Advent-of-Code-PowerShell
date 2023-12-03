@@ -25,7 +25,8 @@ else {
 }
 
 Get-ChildItem -Path $TemplatesDir | Copy-Item -Destination $DayDir
-New-Item -Path (Join-Path $DayDir "TestInput.txt") | Out-Null
+$null = New-Item -Path (Join-Path $DayDir "Input.txt")
+$null = New-Item -Path (Join-Path $DayDir "TestInput.txt")
 Write-Host ""
 Write-Host "Don't forget to save the input: https://adventofcode.com/$Year/day/$Day/input" -ForegroundColor Yellow
 Write-Host "Done!" -ForegroundColor Green
