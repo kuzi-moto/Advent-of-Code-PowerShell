@@ -28,6 +28,14 @@ This script runs the solution script, and outputs a stats file to measure perfor
 
 ## Status
 
+### 2023
+
+
+|  Day  |  Part 1  |   Part 2    |
+| :---: | :------: | :---------: |
+|   1   | Complete | In-Progress |
+|   2   | Complete |             |
+
 ### 2022
 
 |  Day  |  Part 1  |  Part 2  |
