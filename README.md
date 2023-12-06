@@ -34,7 +34,7 @@ This script runs the solution script, and outputs a stats file to measure perfor
 | :---: | :------: | :---------: |
 |   1   | Complete | In-Progress |
 |   2   | Complete |  Complete   |
-|   3   | Complete | In-Progress |
+|   3   | Complete |  Complete   |
 
 ### 2022
 
